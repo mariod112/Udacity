@@ -21,6 +21,8 @@ class Vector(object):
     def __str__(self):
         return 'Vector: {}'.format(self.coordinates)
 
+    def __getitem__(self, key):
+        return self.coordinates[key]
 
     def __eq__(self, other):
         return self.coordinates == other.coordinates
@@ -66,6 +68,28 @@ class Vector(object):
 
     def orthogonal(self, other):
         return abs(self.dot_product(other)) < 1e-10
+
+    def component_parallel_to(self, other):
+        unit_vector = other.normalize()
+        dot_with_unit = self.dot_product(unit_vector)
+        return unit_vector.scalar_multiply(dot_with_unit)
+
+    def component_orthogonal_to(self, other):
+        projection = self.component_parallel_to(other)
+        return self - projection
+
+    def cross_product(self, other):
+        x = (self[1] * other[2]) - (other[1] * self[2])
+        y = -((self[0] * other[2]) - (other[0] * self[2]))
+        z = (self[0] * other[1]) - (other[0] * self[1])
+        return Vector([x, y, z])
+
+    def area_of_parallelegram(self, other):
+        cross = self.cross_product(other)
+        return cross.magnitude()
+
+    def area_of_triangle(self, other):
+        return Decimal('0.5') * self.area_of_parallelegram(other)
 
     def is_zero(self):
         return self.magnitude() < 1e-10

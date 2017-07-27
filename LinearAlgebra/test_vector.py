@@ -42,26 +42,57 @@ from vector import Vector
 # print v13.angle(v14)
 # print v15.angle_degrees(v16)
 
-v17 = Vector([-7.579, -7.88])
-v18 = Vector([22.737, 23.64])
+#v17 = Vector([-7.579, -7.88])
+#v18 = Vector([22.737, 23.64])
 
-print v17.parallel(v18)
-print v17.orthogonal(v18)
+#print v17.parallel(v18)
+#print v17.orthogonal(v18)
 
-v19 = Vector([-2.029, 9.97, 4.172])
-v20 = Vector([-9.231, -6.639, -7.245])
+#v19 = Vector([-2.029, 9.97, 4.172])
+#v20 = Vector([-9.231, -6.639, -7.245])
 
-print v19.parallel(v20)
-print v19.orthogonal(v20)
+#print v19.parallel(v20)
+#print v19.orthogonal(v20)
 
-v21 = Vector([-2.328, -7.284, -1.214])
-v22 = Vector([-1.821, 1.072, -2.94])
+#v21 = Vector([-2.328, -7.284, -1.214])
+#v22 = Vector([-1.821, 1.072, -2.94])
 
-print v21.parallel(v22)
-print v21.orthogonal(v22)
+#print v21.parallel(v22)
+#print v21.orthogonal(v22)
 
-v23 = Vector([2.118, 4.827])
-v24 = Vector([0, 0])
+#v23 = Vector([2.118, 4.827])
+#v24 = Vector([0, 0])
 
-print v23.parallel(v24)
-print v24.orthogonal(v24)
+#print v23.parallel(v24)
+#print v24.orthogonal(v24)
+
+#v25 = Vector([3.039, 1.879])
+#v26 = Vector([0.825, 2.036])
+
+#print v25.component_parallel_to(v26)
+
+#v27 = Vector([-9.88, -3.264, -8.159])
+#v28 = Vector([-2.155, -9.353, -9.473])
+
+#print v27.component_orthogonal_to(v28)
+
+#v29 = Vector([3.009, -6.172, 3.692, -2.51])
+#v30 = Vector([6.404, -9.144, 2.759, 8.718])
+
+#print v29.component_parallel_to(v30)
+#print v29.component_orthogonal_to(v30)
+
+#v31 = Vector([8.462, 7.893, -8.187])
+#v32 = Vector([6.984, -5.975, 4.778])
+
+#print v31.cross_product(v32)
+
+#v33 = Vector([-8.987, -9.838, 5.031])
+#v34 = Vector([-4.268, -1.861, -8.866])
+
+#print v33.area_of_parallelegram(v34)
+
+#v35 = Vector([1.5, 9.547, 3.691])
+#v36 = Vector([-6.007, 0.124, 5.772])
+
+#print v35.area_of_triangle(v36)
