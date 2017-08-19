@@ -1,4 +1,6 @@
 from vector import Vector
+from line import Line
+from plane import Plane
 
 # v = Vector([8.218,-9.341])
 # v1 = Vector([-1.129,2.111])
@@ -96,3 +98,42 @@ from vector import Vector
 #v36 = Vector([-6.007, 0.124, 5.772])
 
 #print v35.area_of_triangle(v36)
+
+# l1 = Line(Vector([4.046, 2.836]), 1.21)
+# l2 = Line(Vector([10.115, 7.09]), 3.025)
+
+# print l1.parallel(l2)
+# print l1 == l2
+# print l1.intersection(l2)
+
+# l3 = Line(Vector([7.204, 3.182]), 8.68)
+# l4 = Line(Vector([8.172, 4.114]), 9.883)
+
+# print l3.parallel(l4)
+# print l3 == l4
+# print l3.intersection(l4)
+
+# l5 = Line(Vector([1.182, 5.562]), 6.744)
+# l6 = Line(Vector([1.773, 8.343]), 9.525)
+
+# print l5.parallel(l6)
+# print l5 == l6
+# print l5.intersection(l6)
+
+p1 = Plane(Vector([-0.412, 3.806, 0.728]), -3.46)
+p2 = Plane(Vector([1.03, -9.515, -1.82]), 8.65)
+
+print p1 == p2
+print p1.parallel(p2)
+
+p3 = Plane(Vector([2.611, 5.528, 0.283]), 4.6)
+p4 = Plane(Vector([7.715, 8.306, 5.342]), 3.76)
+
+print p3 == p4
+print p3.parallel(p4)
+
+p5 = Plane(Vector([-7.926, 8.625, -7.212]), -7.952)
+p6 = Plane(Vector([-2.642, 2.875, -2.404]), -2.443)
+
+print p5 == p6
+print p5.parallel(p6)
