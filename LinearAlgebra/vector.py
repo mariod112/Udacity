@@ -32,8 +32,11 @@ class Vector(object):
         return Vector([x + y for x, y in iterator])
 
     def __sub__(self, other):
-        iterator = zip(self.coordinates, other.coordinates)
-        return Vector([x - y for x, y in iterator])
+        try:
+            iterator = zip(self.coordinates, other.coordinates)
+            return Vector([x - y for x, y in iterator])
+        except:
+            raise AttributeError('NoneType not allowed')
 
     def scalar_multiply(self, multiplier):
         return Vector([x * Decimal(multiplier) for x in self.coordinates])

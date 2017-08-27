@@ -89,12 +89,23 @@ class Plane(object):
         return output
 
     def __eq__(self, other):
-        if not self.parallel(other):
+        if self.normal_vector.is_zero():
+            if not other.normal_vector.is_zero():
+                return False
+            else:
+                diff = self.constant_term - other.constant_term
+                return MyDecimal(diff).is_near_zero()
+        elif other.normal_vector.is_zero():
             return False
 
-        vector_between_planes = self.basepoint - other.basepoint
-        return vector_between_planes.orthogonal(self.normal_vector)
-
+        if not self.parallel(other):
+            return False
+        try:
+            vector_between_planes = self.basepoint - other.basepoint
+            return vector_between_planes.orthogonal(self.normal_vector)
+        except:
+            return False
+        
     def parallel(self, other):
         normal_vector_self = self.normal_vector
         normal_vector_other = other.normal_vector

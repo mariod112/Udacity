@@ -25,6 +25,51 @@ class LinearSystem(object):
         except AssertionError:
             raise Exception(self.ALL_PLANES_MUST_BE_IN_SAME_DIM_MSG)
 
+    def compute_triangular_form(self):
+        system = deepcopy(self)
+
+        num_equations = len(system)
+        dimensions = system.dimension
+
+        j = 0
+
+        for i in range(num_equations):
+
+            while j < dimensions:
+                coefficient_of_index = MyDecimal(system[i].normal_vector[j])
+
+                if coefficient_of_index.is_near_zero():
+                    swap_succeeded = system.swap_row_below_for_nonzero_if_able(i, j)
+                    if not swap_succeeded:
+                        j += 1
+                        continue
+
+                system.clear_coefficients_below(i, j)                         
+                j += 1
+                break
+
+        return system
+    
+    def clear_coefficients_below(self, row, col):
+        num_equations = len(self)
+        coefficient_of_index = MyDecimal(self[row].normal_vector[col])
+
+        for i_clear in range(row + 1, num_equations):
+            n = self[i_clear].normal_vector
+            numerator = n[col]
+            multiplier = -numerator / coefficient_of_index
+            self.add_multiple_times_row_to_row(multiplier, row, i_clear)
+
+    def swap_row_below_for_nonzero_if_able(self, row, col):
+        num_equations = len(self)
+
+        for i in range(row + 1, num_equations):
+            coefficient_of_i = MyDecimal(self.planes[i].normal_vector[col])
+            if not coefficient_of_i.is_near_zero():
+                self.swap_rows(row, i)
+                return True
+
+        return False
 
     def swap_rows(self, row1, row2):
         self[row1], self[row2] = self[row2], self[row1]
