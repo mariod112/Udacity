@@ -1,7 +1,7 @@
 import math
 from decimal import Decimal, getcontext
 
-getcontext().prec = 30
+getcontext().prec = 54
 
 class Vector(object):
     def __init__(self, coordinates):
@@ -29,21 +29,21 @@ class Vector(object):
 
     def __add__(self, other):
         iterator = zip(self.coordinates, other.coordinates)
-        return Vector([x + y for x, y in iterator])
+        return Vector([Decimal(x) + Decimal(y) for x, y in iterator])
 
     def __sub__(self, other):
         try:
             iterator = zip(self.coordinates, other.coordinates)
-            return Vector([x - y for x, y in iterator])
+            return Vector([Decimal(x) - Decimal(y) for x, y in iterator])
         except:
             raise AttributeError('NoneType not allowed')
 
     def scalar_multiply(self, multiplier):
-        return Vector([x * Decimal(multiplier) for x in self.coordinates])
+        return Vector([Decimal(x) * Decimal(multiplier) for x in self.coordinates])
 
     def magnitude(self):
-        squares = [x **2 for x in self.coordinates]
-        return Decimal(sum(squares)).sqrt()
+        squares = [Decimal(x) ** Decimal('2.0') for x in self.coordinates]
+        return Decimal(sum(squares).sqrt())
 
     def normalize(self):
         try:
@@ -54,7 +54,7 @@ class Vector(object):
             raise Exception('Invalid input: zero vector')
 
     def dot_product(self, other):
-        return sum([x * y for x, y in zip(self.coordinates, other.coordinates)])
+        return sum([Decimal(x) * Decimal(y) for x, y in zip(self.coordinates, other.coordinates)])
 
     def angle(self, other):
         dot_product = self.normalize().dot_product(other.normalize())

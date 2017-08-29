@@ -4,8 +4,7 @@ from copy import deepcopy
 from vector import Vector
 from plane import Plane
 
-getcontext().prec = 30
-
+getcontext().prec = 54
 
 class LinearSystem(object):
 
@@ -44,7 +43,7 @@ class LinearSystem(object):
                         j += 1
                         continue
 
-                system.clear_coefficients_below(i, j)                         
+                system.clear_coefficients_below(i, j)
                 j += 1
                 break
 
@@ -57,7 +56,7 @@ class LinearSystem(object):
         for i_clear in range(row + 1, num_equations):
             n = self[i_clear].normal_vector
             numerator = n[col]
-            multiplier = -numerator / coefficient_of_index
+            multiplier = Decimal('-1.0') * numerator / coefficient_of_index
             self.add_multiple_times_row_to_row(multiplier, row, i_clear)
 
     def clear_coefficients_above(self, row, col):
@@ -68,7 +67,7 @@ class LinearSystem(object):
             for i_clear in range(row - 1, -1, -1):
                 n = self[i_clear].normal_vector
                 numerator = n[col]
-                multiplier = -numerator / coefficient_of_index
+                multiplier = Decimal('-1.0') * numerator / coefficient_of_index
                 self.add_multiple_times_row_to_row(multiplier, row, i_clear)
             
     def swap_row_below_for_nonzero_if_able(self, row, col):
@@ -94,18 +93,17 @@ class LinearSystem(object):
 
     def add_multiple_times_row_to_row(self, coefficient, row_to_add, row_to_be_added_to):
         new_normal = self[row_to_add].normal_vector.scalar_multiply(coefficient)
-        new_k = self[row_to_add].constant_term * coefficient
 
+        new_k = self[row_to_add].constant_term * coefficient
         temp_plane_multiplied = Plane(new_normal, new_k)
         temp_plane_to_be_added = self[row_to_be_added_to]
         new_plane_normal = temp_plane_multiplied.normal_vector + temp_plane_to_be_added.normal_vector
         new_plane_k = temp_plane_multiplied.constant_term + temp_plane_to_be_added.constant_term
-
         self[row_to_be_added_to] = Plane(new_plane_normal, new_plane_k)
 
     def compute_rref(self):
         tf = self.compute_triangular_form()
-        
+
         first_nonzero = tf.indices_of_first_nonzero_terms_in_each_row()   
         num_equations = len(first_nonzero)
         
@@ -125,8 +123,8 @@ class LinearSystem(object):
     
     def do_gaussian_elimination_and_extract_solution(self):
         rref = self.compute_rref()
-
-        rref.raise_exception_if_contradictory_equation()
+            
+        rref.raise_exception_if_contradictory_equation()    
         rref.raise_exception_if_too_few_pivots()
 
         num_variables = rref.dimension
@@ -141,7 +139,6 @@ class LinearSystem(object):
             except Exception as e:
                 if str(e) == 'No nonzero elements found':
                     constant_term = MyDecimal(p.constant_term)
-                    print constant_term
                     if not constant_term.is_near_zero():
                         raise Exception(self.NO_SOLUTIONS_MSG)
                 else:
@@ -149,7 +146,6 @@ class LinearSystem(object):
 
     def raise_exception_if_too_few_pivots(self):
         pivot_indices = self.indices_of_first_nonzero_terms_in_each_row()
-        print [1 if index >= 0 else 0 for index in pivot_indices]
         num_pivots = sum([1 if index >= 0 else 0 for index in pivot_indices])
         num_variables = self.dimension
 

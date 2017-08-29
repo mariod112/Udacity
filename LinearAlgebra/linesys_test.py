@@ -1,7 +1,9 @@
 from vector import Vector
 from plane import Plane
 from linsys  import LinearSystem, MyDecimal
-from decimal import Decimal
+from decimal import Decimal, getcontext
+
+getcontext().prec = 54
 
 # p0 = Plane(normal_vector=Vector(['1','1','1']), constant_term='1')
 # p1 = Plane(normal_vector=Vector(['0','1','0']), constant_term='2')
@@ -156,36 +158,36 @@ from decimal import Decimal
 #     print 'test case 4 failed'
 # print r
 
-p1 = Plane(Vector([5.862,1.178,-10.366]), -8.15)
-p2 = Plane(Vector([-2.931, -0.589, 5.183]), -4.075)
+p1 = Plane(Vector(['5.862','1.178','-10.366']), Decimal('-8.15'))
+p2 = Plane(Vector(['-2.931','-0.589', '5.183']), Decimal('-4.075'))
 s = LinearSystem([p1,p2])
 try:
-    print s.compute_rref()
+    # print s.compute_rref()
     r = s.do_gaussian_elimination_and_extract_solution()
     print r
 except Exception as e:
     print str(e)
 
 
-p1 = Plane(Vector([8.631, 5.112, -1.816]), -5.113)
-p2 = Plane(Vector([4.315, 11.132, -5.27]), -6.755)
-p3 = Plane(Vector([-2.158, 3.01, -1.727]), -0.831)
+p1 = Plane(Vector(['8.631', '5.112', '-1.816']), Decimal('-5.113'))
+p2 = Plane(Vector(['4.315', '11.132', '-5.27']), Decimal('-6.775'))
+p3 = Plane(Vector(['-2.158', '3.01', '-1.727']), Decimal('-0.831'))
 s = LinearSystem([p1,p2, p3])
 try:
-    print s.compute_rref()
+    # print s.compute_rref()
     r = s.do_gaussian_elimination_and_extract_solution()
     print r
 except Exception as e:
     print str(e)
 
 
-p1 = Plane(Vector([5.262, 2.739, -9.878]), -3.441)
-p2 = Plane(Vector([5.11, 6.358, 7.638]), -2.152)
-p3 = Plane(Vector([2.016, -9.924, -1.367]), -9.278)
-p4 = Plane(Vector([2.167, -13.543, -18.883]), -10.567)
+p1 = Plane(Vector(['5.262', '2.739', '-9.878']), Decimal('-3.441'))
+p2 = Plane(Vector(['5.111', '6.358', '7.638']), Decimal('-2.152'))
+p3 = Plane(Vector(['2.016', '-9.924', '-1.367']), Decimal('-9.278'))
+p4 = Plane(Vector(['2.167', '-13.543', '-18.883']),Decimal(' -10.567'))
 s = LinearSystem([p1,p2, p3, p4])
 try:
-    print s.compute_rref()
+    # print s.compute_rref()
     r = s.do_gaussian_elimination_and_extract_solution()
     print r
 except Exception as e:
