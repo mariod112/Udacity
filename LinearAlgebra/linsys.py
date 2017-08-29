@@ -60,6 +60,18 @@ class LinearSystem(object):
             multiplier = -numerator / coefficient_of_index
             self.add_multiple_times_row_to_row(multiplier, row, i_clear)
 
+    def clear_coefficients_above(self, row, col):
+        num_equations = len(self)
+        coefficient_of_index = MyDecimal(self[row].normal_vector[col])
+
+        if row -1 > -1:
+            
+            for i_clear in range(row - 1, num_equations, -1):
+                n = self[i_clear].normal_vector
+                numerator = n[col]
+                multiplier = -numerator / coefficient_of_index
+                self.add_multiple_times_row_to_row(multiplier, row, i_clear)
+            
     def swap_row_below_for_nonzero_if_able(self, row, col):
         num_equations = len(self)
 
@@ -92,6 +104,26 @@ class LinearSystem(object):
 
         self[row_to_be_added_to] = Plane(new_plane_normal, new_plane_k)
 
+    def compute_rref(self):
+        tf = self.compute_triangular_form()
+        
+        first_nonzero = tf.indices_of_first_nonzero_terms_in_each_row()   
+        num_equations = len(first_nonzero)
+    
+        for i in range(num_equations):
+            variable = first_nonzero[i]
+            if variable > 0:
+                
+                coefficient_of_index = MyDecimal(tf[i].normal_vector[variable])   
+                
+                if coefficient_of_index != 1:
+                    tf.multiply_coefficient_and_row(1/coefficient_of_index, i)
+                
+                tf.clear_coefficients_below(i, variable)
+                tf.clear_coefficients_above(i,variable)
+                        
+        return tf
+        
     def indices_of_first_nonzero_terms_in_each_row(self):
         num_equations = len(self)
         num_variables = self.dimension
