@@ -1,0 +1,82 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ALL_PLANES_MUST_BE_IN_SAME_DIM_MSG	linsys.py	/^    ALL_PLANES_MUST_BE_IN_SAME_DIM_MSG = 'All planes in the system should live in the same dimension'$/;"	kind:variable	line:12
+INF_SOLUTIONS_MSG	linsys.py	/^    INF_SOLUTIONS_MSG = 'Infinitely many solutions'$/;"	kind:variable	line:14
+Line	line.py	/^class Line(object):$/;"	kind:class	line:8
+LinearSystem	linsys.py	/^class LinearSystem(object):$/;"	kind:class	line:10
+MyDecimal	line.py	/^class MyDecimal(Decimal):$/;"	kind:class	line:129
+MyDecimal	linsys.py	/^class MyDecimal(Decimal):$/;"	kind:class	line:92
+MyDecimal	plane.py	/^class MyDecimal(Decimal):$/;"	kind:class	line:111
+NO_NONZERO_ELTS_FOUND_MSG	line.py	/^    NO_NONZERO_ELTS_FOUND_MSG = 'No nonzero elements found'$/;"	kind:variable	line:10
+NO_NONZERO_ELTS_FOUND_MSG	plane.py	/^    NO_NONZERO_ELTS_FOUND_MSG = 'No nonzero elements found'$/;"	kind:variable	line:10
+NO_SOLUTIONS_MSG	linsys.py	/^    NO_SOLUTIONS_MSG = 'No solutions'$/;"	kind:variable	line:13
+Plane	plane.py	/^class Plane(object):$/;"	kind:class	line:8
+Vector	vector.py	/^class Vector(object):$/;"	kind:class	line:6
+__add__	vector.py	/^    def __add__(self, other):$/;"	kind:member	line:30
+__eq__	line.py	/^    def __eq__(self, other):$/;"	kind:member	line:91
+__eq__	plane.py	/^    def __eq__(self, other):$/;"	kind:member	line:91
+__eq__	vector.py	/^    def __eq__(self, other):$/;"	kind:member	line:27
+__getitem__	linsys.py	/^    def __getitem__(self, i):$/;"	kind:member	line:72
+__getitem__	vector.py	/^    def __getitem__(self, key):$/;"	kind:member	line:24
+__init__	line.py	/^    def __init__(self, normal_vector=None, constant_term=None):$/;"	kind:member	line:12
+__init__	linsys.py	/^    def __init__(self, planes):$/;"	kind:member	line:16
+__init__	plane.py	/^    def __init__(self, normal_vector=None, constant_term=None):$/;"	kind:member	line:12
+__init__	vector.py	/^    def __init__(self, coordinates):$/;"	kind:member	line:7
+__len__	linsys.py	/^    def __len__(self):$/;"	kind:member	line:68
+__setitem__	linsys.py	/^    def __setitem__(self, i, x):$/;"	kind:member	line:76
+__str__	line.py	/^    def __str__(self):$/;"	kind:member	line:46
+__str__	linsys.py	/^    def __str__(self):$/;"	kind:member	line:85
+__str__	plane.py	/^    def __str__(self):$/;"	kind:member	line:46
+__str__	vector.py	/^    def __str__(self):$/;"	kind:member	line:21
+__sub__	vector.py	/^    def __sub__(self, other):$/;"	kind:member	line:34
+add_multiple_times_row_to_row	linsys.py	/^    def add_multiple_times_row_to_row(self, coefficient, row_to_add, row_to_be_added_to):$/;"	kind:member	line:39
+angle	vector.py	/^    def angle(self, other):$/;"	kind:member	line:56
+angle_degrees	vector.py	/^    def angle_degrees(self, other):$/;"	kind:member	line:60
+area_of_parallelegram	vector.py	/^    def area_of_parallelegram(self, other):$/;"	kind:member	line:87
+area_of_triangle	vector.py	/^    def area_of_triangle(self, other):$/;"	kind:member	line:91
+component_orthogonal_to	vector.py	/^    def component_orthogonal_to(self, other):$/;"	kind:member	line:77
+component_parallel_to	vector.py	/^    def component_parallel_to(self, other):$/;"	kind:member	line:72
+cross_product	vector.py	/^    def cross_product(self, other):$/;"	kind:member	line:81
+dot_product	vector.py	/^    def dot_product(self, other):$/;"	kind:member	line:53
+first_nonzero_index	line.py	/^    def first_nonzero_index(iterable):$/;"	kind:member	line:100
+first_nonzero_index	plane.py	/^    def first_nonzero_index(iterable):$/;"	kind:member	line:104
+indices_of_first_nonzero_terms_in_each_row	linsys.py	/^    def indices_of_first_nonzero_terms_in_each_row(self):$/;"	kind:member	line:50
+intersection	line.py	/^    def intersection(self, other):$/;"	kind:member	line:111
+is_near_zero	line.py	/^    def is_near_zero(self, eps=1e-10):$/;"	kind:member	line:130
+is_near_zero	linsys.py	/^    def is_near_zero(self, eps=1e-10):$/;"	kind:member	line:93
+is_near_zero	plane.py	/^    def is_near_zero(self, eps=1e-10):$/;"	kind:member	line:112
+is_zero	vector.py	/^    def is_zero(self):$/;"	kind:member	line:94
+line.py	line.py	1;"	kind:file	line:1
+linesys_test.py	linesys_test.py	1;"	kind:file	line:1
+linsys.py	linsys.py	1;"	kind:file	line:1
+magnitude	vector.py	/^    def magnitude(self):$/;"	kind:member	line:41
+multiply_coefficient_and_row	linsys.py	/^    def multiply_coefficient_and_row(self, coefficient, row):$/;"	kind:member	line:33
+normalize	vector.py	/^    def normalize(self):$/;"	kind:member	line:45
+orthogonal	vector.py	/^    def orthogonal(self, other):$/;"	kind:member	line:69
+p0	linesys_test.py	/^p0 = Plane(normal_vector=Vector(['1','1','1']), constant_term='1')$/;"	kind:variable	line:23
+p1	linesys_test.py	/^p1 = Plane(normal_vector=Vector(['0','1','0']), constant_term='2')$/;"	kind:variable	line:24
+p1	test_vector.py	/^p1 = Plane(Vector([-0.412, 3.806, 0.728]), -3.46)$/;"	kind:variable	line:123
+p2	linesys_test.py	/^p2 = Plane(normal_vector=Vector(['1','1','-1']), constant_term='3')$/;"	kind:variable	line:25
+p2	test_vector.py	/^p2 = Plane(Vector([1.03, -9.515, -1.82]), 8.65)$/;"	kind:variable	line:124
+p3	linesys_test.py	/^p3 = Plane(normal_vector=Vector(['1','0','-2']), constant_term='2')$/;"	kind:variable	line:26
+p3	test_vector.py	/^p3 = Plane(Vector([2.611, 5.528, 0.283]), 4.6)$/;"	kind:variable	line:129
+p4	test_vector.py	/^p4 = Plane(Vector([7.715, 8.306, 5.342]), 3.76)$/;"	kind:variable	line:130
+p5	test_vector.py	/^p5 = Plane(Vector([-7.926, 8.625, -7.212]), -7.952)$/;"	kind:variable	line:135
+p6	test_vector.py	/^p6 = Plane(Vector([-2.642, 2.875, -2.404]), -2.443)$/;"	kind:variable	line:136
+parallel	line.py	/^    def parallel(self, other):$/;"	kind:member	line:106
+parallel	plane.py	/^    def parallel(self, other):$/;"	kind:member	line:98
+parallel	vector.py	/^    def parallel(self, other):$/;"	kind:member	line:63
+plane.py	plane.py	1;"	kind:file	line:1
+s	linesys_test.py	/^s = LinearSystem([p0,p1,p2,p3])$/;"	kind:variable	line:28
+scalar_multiply	vector.py	/^    def scalar_multiply(self, multiplier):$/;"	kind:member	line:38
+set_basepoint	line.py	/^    def set_basepoint(self):$/;"	kind:member	line:27
+set_basepoint	plane.py	/^    def set_basepoint(self):$/;"	kind:member	line:27
+swap_rows	linsys.py	/^    def swap_rows(self, row1, row2):$/;"	kind:member	line:29
+test_vector.py	test_vector.py	1;"	kind:file	line:1
+vector.py	vector.py	1;"	kind:file	line:1
+write_coefficient	line.py	/^        def write_coefficient(coefficient, is_initial_term=False):$/;"	kind:function	line:50
+write_coefficient	plane.py	/^        def write_coefficient(coefficient, is_initial_term=False):$/;"	kind:function	line:50

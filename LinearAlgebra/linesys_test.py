@@ -116,44 +116,77 @@ from decimal import Decimal
 #         t[2] == Plane(normal_vector=Vector(['0','0','-9']), constant_term='-2')):
 #     print 'test case 4 failed'
 
-p1 = Plane(normal_vector=Vector(['1','1','1']), constant_term='1')
-p2 = Plane(normal_vector=Vector(['0','1','1']), constant_term='2')
+# p1 = Plane(normal_vector=Vector(['1','1','1']), constant_term='1')
+# p2 = Plane(normal_vector=Vector(['0','1','1']), constant_term='2')
+# s = LinearSystem([p1,p2])
+# r = s.compute_rref()
+# if not (r[0] == Plane(normal_vector=Vector(['1','0','0']), constant_term='-1') and
+#         r[1] == p2):
+#     print 'test case 1 failed'
+# print r
+# p1 = Plane(normal_vector=Vector(['1','1','1']), constant_term='1')
+# p2 = Plane(normal_vector=Vector(['1','1','1']), constant_term='2')
+# s = LinearSystem([p1,p2])
+# r = s.compute_rref()
+# if not (r[0] == p1 and
+#         r[1] == Plane(constant_term='1')):
+#     print 'test case 2 failed'
+# print r
+# p1 = Plane(normal_vector=Vector(['1','1','1']), constant_term='1')
+# p2 = Plane(normal_vector=Vector(['0','1','0']), constant_term='2')
+# p3 = Plane(normal_vector=Vector(['1','1','-1']), constant_term='3')
+# p4 = Plane(normal_vector=Vector(['1','0','-2']), constant_term='2')
+# s = LinearSystem([p1,p2,p3,p4])
+# r = s.compute_rref()
+# if not (r[0] == Plane(normal_vector=Vector(['1','0','0']), constant_term='0') and
+#         r[1] == p2 and
+#         r[2] == Plane(normal_vector=Vector(['0','0','-2']), constant_term='2') and
+#         r[3] == Plane()):
+#     print 'test case 3 failed'
+# print r
+
+# p1 = Plane(normal_vector=Vector(['0','1','1']), constant_term='1')
+# p2 = Plane(normal_vector=Vector(['1','-1','1']), constant_term='2')
+# p3 = Plane(normal_vector=Vector(['1','2','-5']), constant_term='3')
+# s = LinearSystem([p1,p2,p3])
+# r = s.compute_rref()
+# if not (r[0] == Plane(normal_vector=Vector(['1','0','0']), constant_term=Decimal('23')/Decimal('9')) and
+#         r[1] == Plane(normal_vector=Vector(['0','1','0']), constant_term=Decimal('7')/Decimal('9')) and
+#         r[2] == Plane(normal_vector=Vector(['0','0','1']), constant_term=Decimal('2')/Decimal('9'))):
+#     print 'test case 4 failed'
+# print r
+
+p1 = Plane(Vector([5.862,1.178,-10.366]), -8.15)
+p2 = Plane(Vector([-2.931, -0.589, 5.183]), -4.075)
 s = LinearSystem([p1,p2])
-r = s.compute_rref()
-if not (r[0] == Plane(normal_vector=Vector(['1','0','0']), constant_term='-1') and
-        r[1] == p2):
-    print 'test case 1 failed'
-    print r[0]
-    print Plane(normal_vector=Vector(['1','0','0']), constant_term='-1') 
-    print r[1]
-    print p2
+try:
+    print s.compute_rref()
+    r = s.do_gaussian_elimination_and_extract_solution()
+    print r
+except Exception as e:
+    print str(e)
 
-p1 = Plane(normal_vector=Vector(['1','1','1']), constant_term='1')
-p2 = Plane(normal_vector=Vector(['1','1','1']), constant_term='2')
-s = LinearSystem([p1,p2])
-r = s.compute_rref()
-if not (r[0] == p1 and
-        r[1] == Plane(constant_term='1')):
-    print 'test case 2 failed'
 
-p1 = Plane(normal_vector=Vector(['1','1','1']), constant_term='1')
-p2 = Plane(normal_vector=Vector(['0','1','0']), constant_term='2')
-p3 = Plane(normal_vector=Vector(['1','1','-1']), constant_term='3')
-p4 = Plane(normal_vector=Vector(['1','0','-2']), constant_term='2')
-s = LinearSystem([p1,p2,p3,p4])
-r = s.compute_rref()
-if not (r[0] == Plane(normal_vector=Vector(['1','0','0']), constant_term='0') and
-        r[1] == p2 and
-        r[2] == Plane(normal_vector=Vector(['0','0','-2']), constant_term='2') and
-        r[3] == Plane()):
-    print 'test case 3 failed'
+p1 = Plane(Vector([8.631, 5.112, -1.816]), -5.113)
+p2 = Plane(Vector([4.315, 11.132, -5.27]), -6.755)
+p3 = Plane(Vector([-2.158, 3.01, -1.727]), -0.831)
+s = LinearSystem([p1,p2, p3])
+try:
+    print s.compute_rref()
+    r = s.do_gaussian_elimination_and_extract_solution()
+    print r
+except Exception as e:
+    print str(e)
 
-p1 = Plane(normal_vector=Vector(['0','1','1']), constant_term='1')
-p2 = Plane(normal_vector=Vector(['1','-1','1']), constant_term='2')
-p3 = Plane(normal_vector=Vector(['1','2','-5']), constant_term='3')
-s = LinearSystem([p1,p2,p3])
-r = s.compute_rref()
-if not (r[0] == Plane(normal_vector=Vector(['1','0','0']), constant_term=Decimal('23')/Decimal('9')) and
-        r[1] == Plane(normal_vector=Vector(['0','1','0']), constant_term=Decimal('7')/Decimal('9')) and
-        r[2] == Plane(normal_vector=Vector(['0','0','1']), constant_term=Decimal('2')/Decimal('9'))):
-    print 'test case 4 failed'
+
+p1 = Plane(Vector([5.262, 2.739, -9.878]), -3.441)
+p2 = Plane(Vector([5.11, 6.358, 7.638]), -2.152)
+p3 = Plane(Vector([2.016, -9.924, -1.367]), -9.278)
+p4 = Plane(Vector([2.167, -13.543, -18.883]), -10.567)
+s = LinearSystem([p1,p2, p3, p4])
+try:
+    print s.compute_rref()
+    r = s.do_gaussian_elimination_and_extract_solution()
+    print r
+except Exception as e:
+    print str(e)
