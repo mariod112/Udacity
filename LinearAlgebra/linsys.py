@@ -120,7 +120,60 @@ class LinearSystem(object):
                     tf.multiply_coefficient_and_row(Decimal('1.0')/coefficient_of_index, i)     
 
         return tf
+        
+    def compute_solution(self):
+        try:
+            return self.do_gaussian_elimination_and_parametrization()
+
+        except Exception as e:
+            if str(e) == self.NO_SOLUTIONS_MSG:
+                return str(e)
+            else:
+                raise e
     
+    def do_gaussian_elimination_and_parametrization(self):
+        rref = self.compute_rref()
+        rref.raise_exception_if_contradictory_equation()
+
+        direction_vectors = rref.extract_direction_vectors_for_parametrization()  # NOQA
+        basepoint = rref.extract_basepoint_for_parametrization()
+
+        return Parametrization(basepoint, direction_vectors)
+
+    def extract_direction_vectors_for_parametrization(self):
+        num_variables = self.dimension
+        pivot_indices = self.indices_of_first_nonzero_terms_in_each_row()
+        free_variable_indices = set(range(num_variables)) - set(pivot_indices)
+
+        direction_vectors = []
+
+        for free_var in free_variable_indices:
+            vector_coords = [0] * num_variables
+            vector_coords[free_var] = 1
+            for index, plane in enumerate(self.planes):
+                pivot_var = pivot_indices[index]
+                if pivot_var < 0:
+                    break
+                vector_coords[pivot_var] = -plane.normal_vector[free_var]
+
+            direction_vectors.append(Vector(vector_coords))
+
+        return direction_vectors
+    
+    def extract_basepoint_for_parametrization(self):
+        num_variables = self.dimension
+        pivot_indices = self.indices_of_first_nonzero_terms_in_each_row()
+
+        basepoint_coords = [0] * num_variables
+
+        for index, plane in enumerate(self.planes):
+            pivot_var = pivot_indices[index]
+            if pivot_var < 0:
+                break
+            basepoint_coords[pivot_var] = plane.constant_term
+
+        return Vector(basepoint_coords)
+        
     def do_gaussian_elimination_and_extract_solution(self):
         rref = self.compute_rref()
             
@@ -192,6 +245,38 @@ class LinearSystem(object):
         temp = ['Equation {}: {}'.format(i+1,p) for i,p in enumerate(self.planes)]
         ret += '\n'.join(temp)
         return ret
+
+
+class Parametrization(object):
+
+    BASEPT_AND_DIR_VECTORS_MUST_BE_IN_SAME_DIM = (
+        'The basepoint and direction vectors should all live in the same '
+        'dimension')
+
+    def __init__(self, basepoint, direction_vectors):
+
+        self.basepoint = basepoint
+        self.direction_vectors = direction_vectors
+        self.dimension = self.basepoint.dimension
+
+        try:
+            for v in direction_vectors:
+                assert v.dimension == self.dimension
+
+        except AssertionError:
+            raise Exception(self.BASEPT_AND_DIR_VECTORS_MUST_BE_IN_SAME_DIM)
+    
+    def __str__(self):
+
+        output = ''
+        for coord in range(self.dimension):
+            output += 'x_{} = {} '.format(coord + 1,
+                                          round(self.basepoint[coord], 3))
+            for free_var, vector in enumerate(self.direction_vectors):
+                output += '+ {} t_{}'.format(round(vector[coord], 3),
+                                             free_var + 1)
+            output += '\n'
+        return output
 
 
 class MyDecimal(Decimal):
